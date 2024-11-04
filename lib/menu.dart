@@ -59,7 +59,7 @@ class MyHomePage extends StatelessWidget {
                   const Padding(
                     padding: EdgeInsets.only(top: 16.0),
                     child: Text(
-                      'Welcome to Mental Health Tracker',
+                      'Welcome to EasyShop',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18.0,
@@ -110,6 +110,7 @@ class InfoCard extends StatelessWidget {
         width: MediaQuery.of(context).size.width /
             3.5, // menyesuaikan dengan lebar device yang digunakan.
         padding: const EdgeInsets.all(16.0),
+        color: Colors.amber,
         // Menyusun title dan content secara vertikal.
         child: Column(
           children: [
@@ -144,7 +145,7 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       // Menentukan warna latar belakang dari tema aplikasi.
-      color: Theme.of(context).colorScheme.secondary,
+      color: Colors.blueAccent,
       // Membuat sudut kartu melengkung.
       borderRadius: BorderRadius.circular(12),
 

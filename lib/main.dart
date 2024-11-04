@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
       title: 'EasyShop',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.deepPurple,
-        ).copyWith(secondary: Colors.deepPurple[400]),
+          primarySwatch: Colors.deepOrange,
+        ).copyWith(secondary: Colors.deepPurple[100]),
         useMaterial3: true,
       ),
       home: MyHomePage(),
