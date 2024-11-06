@@ -28,19 +28,27 @@ Perbedaan utama antara _stateless_ dan _stateful_ widget adalah pada kemampuanny
 4. Padding: Menambahkan jarak sekitar child widget.
 5. Column: Menyusun widget secara vertikal.
 6. Row: Menyusun widget secara horizontal.
-7. SizedBox: Menambahkan jarak vertikal atau horizontal.
-8. Card: Menyediakan kontainer dengan elevasi dan dekorasi untuk membuat tampilan seperti kartu.
-9. Container: Menyediakan kontainer dengan opsi untuk margin, padding, dan warna latar.
+7. SizedBox: Memberikan tinggi dan lebar yang tetap kepada childnya.
+8. Card: Kontainer untuk membuat tampilan seperti kartu.
+9. Container: Kontainer dengan opsi untuk margin, padding, dan warna latar.
 10. GridView.count: Menampilkan child widget dalam grid dengan jumlah kolom tetap.
 11. Text: Menampilkan teks dalam aplikasi.
-12. InkWell: Menambahkan interaksi "tap" dengan efek ripple.
-13. ScaffoldMessenger: Menampilkan SnackBar untuk notifikasi sement ara.
+12. InkWell: Membuat objek dapat diklik dan disertai dengan animasi
+13. ScaffoldMessenger: Menampilkan SnackBar untuk notifikasi sementara.
 14. SnackBar: Menampilkan pesan sementara di bagian bawah layar.
 15. Icon: Menampilkan ikon grafis.
 
 ### Apa fungsi dari `setState()`? Variabel apa saja yang dapat terdampak dengan fungsi tersebut?
 
+`setState()` adalah fungsi yang digunakan oleh StatefulWidget untuk memberi tahu framework bahwa ada perubahan pada _state_ komponen yang membutuhkan rebuild tampilan.
+
+Variabel yang dapat terdampak oleh `setState()` adalah variabel yang disimpan dalam state komponen, seperti nilai dari kontrol input, posisi dalam daftar, atau kondisi logika tampilan. Hal ini memungkinkan pembaruan tampilan secara otomatis ketika data diubah tanpa manipulasi langsung pada kode program.
+
 ### Perbedaan antara `const` dengan `final`
+
+- Nilai dari sebuah `const` harus dapat diketahui di waktu _compile_ dan langsung diberikan saat variabel dideklarasi, sedangkan `final` memperbolehkan nilai yang dikalkulasi saat _runtime_ dan tidak dapat dimodifikasi selanjutnya.
+
+- `const` digunakan untuk nilai _immutable_ dan telah diketahui dari awal, sedangkan `final` digunakan apabila nilai belum dapat diketahui waktu _compile_, tetapi tidak boleh diubah setelah diberikan nilai.
 
 ### Implementasi _checklist_
 
@@ -58,7 +66,7 @@ Perbedaan utama antara _stateless_ dan _stateful_ widget adalah pada kemampuanny
 
 1. Pada file `menu.dart`, menambahkan attribut berikut pada class `MyHomePage`
 
-```
+```dart
 final List<ItemHomepage> items = [
     ItemHomepage("Lihat Daftar Produk", Icons.view_day_outlined, Colors.blueAccent),
     ItemHomepage("Tambah Produk", Icons.add, Colors.greenAccent),
@@ -68,7 +76,7 @@ final List<ItemHomepage> items = [
 
 2. Class `ItemHomePage` akan berfungsi sebagai attribut-attribut yang dimiliki oleh tiap button. Adapun isi dari `ItemHomePage` adalah sebagai berikut.
 
-```
+```dart
 class ItemHomepage {
   final String name;
   final IconData icon;
@@ -84,7 +92,7 @@ class ItemHomepage {
 
 Snackbar diiemplementasikan dengan menambahkan kode berikut pada attribut `onTap` di Widget class `ItemCard`
 
-```
+```dart
 ...
  onTap: () {
           // Menampilkan pesan SnackBar saat kartu ditekan.
