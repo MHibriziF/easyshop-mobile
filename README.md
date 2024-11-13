@@ -105,3 +105,158 @@ Snackbar diiemplementasikan dengan menambahkan kode berikut pada attribut `onTap
 ```
 
 </details>
+
+<details>
+<summary><h2><b>Tugas 8 (click to expand) </b></h2></summary>
+
+## Kegunaan const di Flutter
+
+`const` digunakan untuk mendeklarasikan nilai atau widget yang bersifat konstan pada waktu kompilasi. Ketika `const` diterapkan pada widget, Flutter akan mengetahui bahwa widget tersebut tidak dapat berubah dan dibuat sekali saja sehingga meningkatkan efisiensi dan performa aplikasi.
+
+### Keuntungan menggunakan const pada kode Flutter
+
+1. Efisiensi Memori: Widget yang ditandai dengan `const` hanya dibuat sekali dan dapat digunakan kembali sehingga menghindari pembuatan ulang widget yang sama berulang kali.
+
+2. Peningkatan Performa: Karena widget `const` tidak memerlukan proses _rebuild_ (penggambaran ulang) di setiap render, penggunaan `const` dapat mempercepat rendering UI.
+
+3. Meningkatkan Readability: Menggunakan `const` membuat kode lebih mudah dimengerti
+
+4. Eror saat compile: Eror pada `const` dapat dideteksi saat waktu compile sehingga memudahkan pengembang ketika melakukan proses debugging
+
+### Kapan sebaiknya kita menggunakan const
+
+dan kapan sebaiknya tidak digunakan?
+
+1. Stateless Widget: Gunakan `const` pada widget stateless yang tidak berubah dan tidak menerima parameter yang akan mempengaruhi state mereka.
+
+2. Widget dengan Parameter Konstan: Jika widget menerima parameter yang nilainya tetap (tidak berubah), gunakan `const` untuk mendeklarasikannya.
+
+### Kapan sebaiknya tidak menggunakan const
+
+1. Stateful Widget: Hindari menggunakan `const` pada widget yang memiliki state berubah-ubah karena setiap perubahan pada state memerlukan rebuild.
+
+2. Widget dengan Data Dinamis: Jika widget menerima parameter yang berubah sepanjang waktu (seperti input pengguna atau data yang didapatkan dari API), sebaiknya tidak menggunakan const.
+
+## Penggunaan Column dan Row pada Flutter
+
+### Column
+
+Widget ini menyusun child widget secara vertikal. Widget ini biasanya digunakan untuk layout vertikal, misalnya untuk menampilkan daftar item atau formulir.
+
+Contoh:
+
+```dart
+Column(
+  children: [
+    Text(
+      title,
+      style: const TextStyle(fontWeight: FontWeight.bold),
+    ),
+    const SizedBox(height: 8.0),
+    Text(content),
+  ],
+)
+```
+
+### Row
+
+Widget ini menyusun child widget secara horizontal. Widget ini digunakan ketika kita ingin menyusun widget secara horizontal, misalnya tombol atau elemen-elemen yang disusun berdampingan.
+
+Contoh:
+
+```dart
+Row(
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  children: [
+    InfoCard(title: 'NPM', content: npm),
+    InfoCard(title: 'Name', content: name),
+    InfoCard(title: 'Class', content: className),
+  ],
+),
+```
+
+### Perbandingan
+
+- Column mengatur child widget secara vertikal, sedangkan Row mengatur secara horizontal.
+
+- Kedua widget ini dapat menerima properti seperti mainAxisAlignment dan crossAxisAlignment untuk mengatur penataan dan penyusunan child widget.
+
+- Column lebih sering digunakan ketika kita ingin layout berbentuk daftar atau formulir vertikal, sementara Row lebih cocok untuk elemen yang memerlukan penataan horizontal.
+
+## Elemen input yang digunakan pada halaman form.
+
+Pada halaman `ProductEntryFormPage`, jenis input yang saya gunakan hanya satu, yaitu `TextFormField`.
+
+### Elemen input Flutter lain yang tidak digunakan
+
+Adapun elemen input yang tidak digunakan pada form adalah sebagai berikut:
+
+1. Checkbox: Dapat digunakan untuk memilih banyak opsi di saat yang bersamaan
+
+2. Radio: Berguna untuk memilih salah satu opsi dari beberapa pilihan
+
+3. Switch: Dapat digunakan untuk memilih antara dua keadaan
+
+4. DropdownButton: Dapat digunakan untuk memilih nilai dari daftar pilihan yang terbatas
+
+5. DatePicker: Dapat digunakan untuk memilih tanggal
+
+6. Slider: Dapat digunakan untuk memilih angka dalam rentang tertentu
+
+7. Time Picker: Dapat digunakan untuk memilih waktu
+
+## Cara mengatur tema (theme) dalam aplikasi Flutter
+
+Untuk menjaga konsistensi tampilan dalam aplikasi Flutter, saya mengatur tema menggunakan `ThemeData`. `ThemeData` dapat dibuat di dalam widget `MaterialApp` pada file `main.dart`. Dengan cara ini, seluruh elemen UI di aplikasi akan mengikuti aturan desain yang konsisten sesuai dengan apa yang diatur dalam `ThemeData`.
+
+Perhatikan kode berikut
+
+```dart
+MaterialApp(
+  title: 'EasyShop',
+  theme: ThemeData(
+    colorScheme: ColorScheme.fromSwatch(
+      primarySwatch: Colors.deepOrange,
+    ).copyWith(secondary: Colors.deepPurple[100]),
+    useMaterial3: true,
+  ),
+  home: MyHomePage(),
+);
+```
+
+Kode tersebut merupakan kode yang saya buat pada file `main.dart`.
+
+Pada attribut theme di `MaterialApp`, saya memberikan tema warna utama yaitu deepOrange dengan warna secondarynya deepPurple. Apabila widgets lain ingin mengikuti warna pada tema, cukup dengan menggunakan `Theme.of(context).colorScheme.primary` pada attribut Colors. Dengan demikian, aplikasi dengan tema warna deepOrange diiringin dengan deepPurple dapat diimplementasikan.
+
+## Cara menangani navigasi pada Flutter
+
+Untuk menangani navigasi dalam aplikasi Flutter, saya menggunakan `Navigator`. Dengan menggunakan `Navigator`, saya dapat melakukan navigasi dengan menggunakan methode `pushReplacement` dan 'push'.
+
+Contoh:
+
+1. Menggunakan `pushReplacement`
+
+```dart
+onTap: () {
+  Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MyHomePage(),
+      ));
+},
+```
+
+Dengan kode tersebut, apabila widget tersebut disentuh, maka halaman saat ini akan digantikan dengan halaman `MyHomePage`
+
+2. Menggunakan `push`
+
+```dart
+ onTap: () {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const ProductEntryFormPage()));
+},
+```
+
+Dengan kode tersebut, apabila widget tersebut disentuh, maka halaman `ProductEntryFormPage` akan ditambahkan ke dalam tumpukan navigasi. Apabila pengguna menggunakan tombol back, maka pengguna akan kembali ke laman sebelum wdiget tersebut disentuh.
+
+</details>
