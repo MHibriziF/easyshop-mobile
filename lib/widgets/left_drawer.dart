@@ -1,3 +1,4 @@
+import 'package:easyshop/screens/list_productentry.dart';
 import 'package:flutter/material.dart';
 import 'package:easyshop/screens/menu.dart';
 import 'package:easyshop/screens/productentry_form.dart';
@@ -57,6 +58,17 @@ class LeftDrawer extends StatelessWidget {
             onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => const ProductEntryFormPage()));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.view_day_outlined),
+            title: const Text('Daftar Product'),
+            onTap: () {
+              // Route menu ke halaman product
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProductEntryPage()),
+              );
             },
           ),
         ],
