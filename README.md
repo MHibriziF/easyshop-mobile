@@ -125,8 +125,6 @@ Snackbar diiemplementasikan dengan menambahkan kode berikut pada attribut `onTap
 
 ### Kapan sebaiknya kita menggunakan const
 
-dan kapan sebaiknya tidak digunakan?
-
 1. Stateless Widget: Gunakan `const` pada widget stateless yang tidak berubah dan tidak menerima parameter yang akan mempengaruhi state mereka.
 
 2. Widget dengan Parameter Konstan: Jika widget menerima parameter yang nilainya tetap (tidak berubah), gunakan `const` untuk mendeklarasikannya.
