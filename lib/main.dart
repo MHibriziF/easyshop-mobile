@@ -1,5 +1,5 @@
+import 'package:easyshop/screens/login.dart';
 import 'package:flutter/material.dart';
-import 'package:easyshop/screens/menu.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           ).copyWith(secondary: Colors.deepPurple[100]),
           useMaterial3: true,
         ),
-        home: MyHomePage(),
+        home: const LoginPage(),
       ),
     );
   }
