@@ -481,7 +481,7 @@ def create_product_flutter(request):
         data = json.loads(request.body)
         print(data)
         new_product = Product.objects.create(
-            user=request.user,   # Kaitkan langsyng ke user
+            user=request.user,   # Kaitkan langsung ke user
             name=data["name"],
             stock=int(data["stock"]),
             price=int(data["price"]),
