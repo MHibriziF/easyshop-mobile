@@ -3,6 +3,7 @@ import 'package:easyshop/models/product_entry.dart';
 import 'package:easyshop/widgets/left_drawer.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'product_detail_page.dart'; // Import the new details page
 
 class ProductEntryPage extends StatefulWidget {
   const ProductEntryPage({super.key});
@@ -53,30 +54,45 @@ class _ProductEntryPageState extends State<ProductEntryPage> {
             } else {
               return ListView.builder(
                 itemCount: snapshot.data!.length,
-                itemBuilder: (_, index) => Container(
-                  margin:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "${snapshot.data![index].fields.name}",
-                        style: const TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
+                itemBuilder: (_, index) {
+                  var product = snapshot.data![index];
+                  return InkWell(
+                    onTap: () {
+                      // Navigate to the product details page
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ProductDetailPage(product: product),
                         ),
+                      );
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12),
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "${product.fields.name}",
+                            style: const TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Text("${product.fields.description}"),
+                          const SizedBox(height: 10),
+                          Text("Stock: ${product.fields.stock}"),
+                          const SizedBox(height: 10),
+                          Text("Price: Rp${product.fields.price}")
+                        ],
                       ),
-                      const SizedBox(height: 10),
-                      Text("${snapshot.data![index].fields.description}"),
-                      const SizedBox(height: 10),
-                      Text("Stock: ${snapshot.data![index].fields.stock}"),
-                      const SizedBox(height: 10),
-                      Text("Price: Rp${snapshot.data![index].fields.price}")
-                    ],
-                  ),
-                ),
+                    ),
+                  );
+                },
               );
             }
           }

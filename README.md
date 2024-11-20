@@ -258,3 +258,203 @@ Dengan kode tersebut, apabila widget tersebut disentuh, maka halaman saat ini ak
 Dengan kode tersebut, apabila widget tersebut disentuh, maka halaman `ProductEntryFormPage` akan ditambahkan ke dalam tumpukan navigasi. Apabila pengguna menggunakan tombol back, maka pengguna akan kembali ke laman sebelum wdiget tersebut disentuh.
 
 </details>
+
+<details>
+<summary><h2><b>Tugas 9 (click to expand) </b></h2></summary>
+
+## Jelaskan mengapa kita perlu membuat model untuk melakukan pengambilan ataupun pengiriman data JSON? Apakah akan terjadi error jika kita tidak membuat model terlebih dahulu?
+
+Membuat model untuk pengambilan atau pengiriman data JSON penting untuk memastikan bahwa data yang diterima atau dikirim memiliki struktur yang konsisten dan mudah dikelola.
+Selain itu, model membantu dalam menguraikan data JSON menjadi objek yang dapat digunakan oleh aplikasi, sehingga memudahkan pengaksesan dan manipulasi data.
+
+Apabila kita tidak membuat model terlebih dahulu, aplikasi tetap dapat berfungsi dengan normal. Akan tetapi, tanpa adanya model, risiko terhadap kesalahan dan ketidakstabilan akan menjadi lebih tinggi. Selain itu, proses penguraian data JSON akan menjadi lebih rumit dan rawan error, misalnya akibat tipe data yang tidak sesuai atau data yang tidak lengkap. Hal ini dapat menyebabkan berbagai masalah seperti data yang salah ditampilkan, aplikasi crash, atau kesulitan dalam debugging dan pemeliharaan kode. Dengan menggunakan model, kita bisa mengurangi risiko-risiko ini dan memastikan bahwa data yang diolah selalu dalam format yang benar dan konsisten.
+
+## Jelaskan fungsi dari library http yang sudah kamu implementasikan pada tugas ini
+
+Library `http` di Flutter digunakan untuk melakukan permintaan `HTTP`, seperti `GET`, `POST`, `PUT`, dan `DELETE`, ke server. Dengan library ini, kita dapat berkomunikasi dengan server atau API untuk mengirim dan menerima data. Library ini menyediakan cara yang mudah dan efisien untuk menangani permintaan `HTTP` dan mengelola respons yang diterima dari server.
+
+## Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.
+
+`CookieRequest` digunakan untuk menangani sesi pengguna dalam aplikasi, khususnya untuk mengelola cookie yang digunakan untuk autentikasi dan menjaga status login pengguna.
+Dengan `CookieRequest`, kita bisa menyimpan cookie yang diterima dari server dan mengirimkannya kembali pada setiap permintaan selanjutnya, sehingga server dapat mengenali pengguna yang sedang login.
+
+Instance `CookieRequest` perlu dibagikan ke semua komponen di aplikasi Flutter untuk memastikan bahwa seluruh aplikasi menggunakan sesi dan autentikasi yang konsisten. Dengan berbagi instance `CookieRequest`, setiap komponen dalam aplikasi dapat mengakses dan mengirim cookie yang sama sehingga server tetap mengenali pengguna yang sedang login di setiap permintaan. Hal ini sangat penting dalam aplikasi yang membutuhkan autentikasi pengguna, karena memungkinkan fitur seperti login, logout, dan akses data pengguna yang aman dan terintegrasi di seluruh aplikasi.
+
+## Jelaskan mekanisme pengiriman data mulai dari input hingga dapat ditampilkan pada Flutter.
+
+Mekanisme pengiriman data di Flutter dimulai dari pengambilan input dari pengguna melalui widget seperti `TextField` atau `Form`. Setelah itu, data yang diinput dikirim ke server menggunakan permintaan HTTP dengan bantuan library `http`. Server kemudian memproses data tersebut dan mengirimkan respons kembali dalam format JSON.
+Di sisi Flutter, respons ini diuraikan dan diubah menjadi objek-objek yang dapat digunakan oleh aplikasi.
+Data yang telah diuraikan kemudian dapat ditampilkan kepada pengguna melalui widget seperti ListView, GridView, atau widget lainnya yang sesuai dengan desain aplikasi.
+
+## Jelaskan mekanisme autentikasi dari login, register, hingga logout. Mulai dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
+
+Proses autentikasi di Flutter melibatkan interaksi dengan backend, seperti Django untuk aplikasi ini.
+Saat pengguna menginput data akun untuk login atau register, data tersebut dikirim ke server Django melalui permintaan HTTP.
+Django kemudian memverifikasi atau menyimpan data tersebut dan mengirimkan respons yang berisi informasi autentikasi, seperti token atau cookie.
+Informasi ini disimpan di aplikasi Flutter menggunakan `CookieRequest`.
+Selama pengguna terautentikasi, aplikasi Flutter akan mengirim token atau cookie ini pada setiap permintaan ke server untuk menjaga sesi pengguna tetap aktif.
+Ketika pengguna melakukan logout, aplikasi mengirim permintaan ke server untuk mengakhiri sesi, dan informasi autentikasi dihapus dari aplikasi, sehingga pengguna keluar dari aplikasi.
+
+## Implementasi _checklist_
+
+### Memastikan deployment proyek tugas Django kamu telah berjalan dengan baik.
+
+Karena untuk saat ini integrasi django dan flutter dilakukan secara local, checklist ini cukup dicapai dengan memastikan bahwa server local telah berjalan baik dengan menjalankan perintah `python manage.py runserver`
+
+### Mengimplementasikan fitur registrasi akun pada proyek tugas Flutter.
+
+1. Pada proyek django, membuat aplikasi baru bernama `authentication`
+2. Pastikan aplikasi yang baru dibuat telah ditambahkan ke `INSTALLED_APPS` di `settings.py` pada root project
+3. Pada `views.py` aplikasi `authentication`, membuat fungsi baru bernama `register()` untuk menghandle registrasi via flutter
+4. Membuat file `urls.py` pada aplikasi `authentication`
+5. Melakukan routing untuk fungsi yang telah dibuat pada step-3 dengan menambahkan path ke fungsi tersebut
+6. Pada `urls.py` proyek, menambahkan `urls.py` aplikasi `authentication`
+7. Pada proyek flutter, membuat file `register.dart` di direktori `lib/screens`
+8. Menambahkan package yang dibutuhkan dengan import pada file tersebut. Untuk package yang tidak tersedia secara default pada flutter, ditambakan dengan menjalankan perintah `flutter pub add nama_package`. Pada aplikasi ini, package yang ditambahkan dengan perintah tersebut adalah `provider`, `pbp_django_auth`, dan `http`.
+9. Mengimplementasikan program untuk registrasi pada file `register.dart`
+
+### Membuat halaman login pada proyek tugas Flutter.
+
+1. Pada proyek django, membuat fungsi views baru pada aplikasi `authentication` dengan nama `login()`
+2. Melakukan routing untuk fungsi baru tersebut di `urls.py` aplikasi `authentication`
+3. Pada proyek flutter, membuat file `login.dart` di direktorir `lib/screens`
+4. Menambahkan package yang dibutuhkan dengan melakukan import pada file tersebut
+5. Mengimplementasikan program untuk login pada file `login.dart`
+
+### Mengintegrasikan sistem autentikasi Django dengan proyek tugas Flutter.
+
+1. Pastikan bahwa server django telah berjalan (sesuai dengan checklist pertama)
+2. Pada file `android/app/src/main/AndroidManifest.xml` di proyek flutter, tambahkan `<uses-permission android:name="android.permission.INTERNET" />` di bawah tag application untuk memperbolehkan akses ke internet
+3. Pada file `register.dart`, pastikan URL yang dituju pada response ketika tombol register ditekan telah sesuai dengan URL di mana proyek django dijalankan dan menuju ke path register
+
+```dart
+final response = await request.postJson(
+                "http://127.0.0.1:8000/auth/register/", // URL proyek django untuk register flutter
+                jsonEncode({
+                  "username": username,
+                  "password1": password1,
+                  "password2": password2,
+                }));
+```
+
+3. Pada file `login.dart`, pastikan URL yang dituju pada response ketika tombol login ditekan telah sesuai dengan URL di mana proyek django dijalankan dan menuju ke path login
+
+```dart
+final response = await request
+                .login("http://127.0.0.1:8000/auth/login/", { // URL proyek django untuk login flutter
+              'username': username,
+              'password': password,
+            });
+```
+
+4. Pada proyek django, membuat fungsi views baru `create_product_flutter` pada aplikasi `main`. Kemudian, pada proyek flutter, pada file `productentry_form.dart`, pastikan URL yang dituju pada response ketika tombol save ditekan telah sesuai dengan URL di mana proyek django dijalankan dan menuju ke path untuk menambahkan produk
+
+```dart
+final response = await request.postJson(
+              "http://127.0.0.1:8000/create-flutter/", // URL django untuk menambahkan produk dari flutter
+              jsonEncode(<String, String>{
+                'name': _name,
+                'stock': _stock.toString(),
+                'price': _price.toString(),
+                'description': _description,
+              }),
+```
+
+5. Pada file `list_productentry.dart` (file ini dibuat pada beberapa checklist selanjutnya) pastikan URL yang dituju pada response ketika laman dimuat telah sesuai dengan URL di mana proyek django dijalankan dan menuju ke path untuk memberikan data produk
+
+```dart
+final response = await request.get('http://127.0.0.1:8000/json/');
+```
+
+6. Pada proyek django, membuat fungsi views baru `logout` pada aplikasi `authentication`. Kemudian, pada proyek flutter, pada file `product_cart.dart` pastikan URL yang dituju pada response ketika tombol logout ditekan telah sesuai dengan URL di mana proyek django dijalankan dan menuju ke path untuk melakukan logout
+
+```dart
+final response = await request.logout("http://127.0.0.1:8000/auth/logout/");
+```
+
+### Membuat model kustom sesuai dengan proyek aplikasi Django.
+
+1. Salin model JSON pada alamat `http://127.0.0.1:8000/json/` (pastikan server local django berjalan dan sedang login pada suatu akun dan telah menambahkan setidaknya satu produk)
+
+2. Membuka web https://app.quicktype.io/ kemudian tempel data JSON yang disalin pada step-1 di laman tersebut
+3. Mengganti namanya menjadi `productEntry`, pastikan source type adalah JSON dan languange adalah dart. Kemudian tekan copy code
+4. Pada proyek flutter, membuat direktori baru bernama `models` di dalam direktori `lib`
+5. Dalam direktori `lib/models`, membuat file baru dengan nama `product_entry.dart`
+6. Menempel kode yang telah disalin pada step-3
+
+### Membuat halaman yang berisi daftar semua item yang terdapat pada endpoint JSON di Django yang telah kamu deploy.
+
+1. Pada direktori `lib/screens`, membuat file baru bernama `list_productentry.dart`.
+2. Mengimport package yang dibutuhkan
+3. Mengimplementasikan tampilan untuk daftar item
+
+#### Tampilkan name, price, dan description dari masing-masing item pada halaman ini.
+
+1. Pada file `list_productentry.dart`, tambahkan fungsi `fetchProduct` berikut untuk mengkonversi data json
+
+```dart
+Future<List<ProductEntry>> fetchProduct(CookieRequest request) async {
+    final response = await request.get('http://127.0.0.1:8000/json/');
+    // Melakukan decode response menjadi bentuk json
+    var data = response;
+    // Melakukan konversi data json menjadi object ProductEntry
+    List<ProductEntry> listProduct = [];
+    for (var d in data) {
+      if (d != null) {
+        listProduct.add(ProductEntry.fromJson(d));
+      }
+    }
+    return listProduct;
+  }
+```
+
+2. Pada widget Build, tambahkan kode berikut sebgai children dari `ListView`
+
+```dart
+Text(
+  "${snapshot.data![index].fields.name}",
+  style: const TextStyle(
+    fontSize: 18.0,
+    fontWeight: FontWeight.bold,
+  ),
+),
+const SizedBox(height: 10),
+Text("${snapshot.data![index].fields.description}"),
+const SizedBox(height: 10),
+Text("Stock: ${snapshot.data![index].fields.stock}"),
+const SizedBox(height: 10),
+Text("Price: Rp${snapshot.data![index].fields.price}")
+```
+
+### Membuat halaman detail untuk setiap item yang terdapat pada halaman daftar Item.
+
+### Halaman ini dapat diakses dengan menekan salah satu item pada halaman daftar Item.
+
+### Tampilkan seluruh atribut pada model item kamu pada halaman ini.
+
+### Tambahkan tombol untuk kembali ke halaman daftar item.
+
+### Melakukan filter pada halaman daftar item dengan hanya menampilkan item yang terasosiasi dengan pengguna yang login.
+
+Checklist ini diimplementasi dengan mengaitkan tiap produk ke user sehingga ketika endpoint JSON dipanggil data yang didapat otomatis telah difilter berdasarkan user.
+
+```python
+@csrf_exempt
+def create_product_flutter(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        print(data)
+        new_product = Product.objects.create(
+            user=request.user,   # Kaitkan langsyng ke user
+            name=data["name"],
+            stock=int(data["stock"]),
+            price=int(data["price"]),
+            description=data["description"],
+        )
+        new_product.save()
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
+```
+
+</details>

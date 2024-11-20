@@ -59,7 +59,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         borderRadius: BorderRadius.all(Radius.circular(12.0)),
                       ),
                       contentPadding:
-                      EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+                          EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -78,7 +78,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         borderRadius: BorderRadius.all(Radius.circular(12.0)),
                       ),
                       contentPadding:
-                      EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+                          EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
                     ),
                     obscureText: true,
                     validator: (value) {
@@ -98,7 +98,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         borderRadius: BorderRadius.all(Radius.circular(12.0)),
                       ),
                       contentPadding:
-                      EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+                          EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
                     ),
                     obscureText: true,
                     validator: (value) {
