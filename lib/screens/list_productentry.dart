@@ -58,7 +58,7 @@ class _ProductEntryPageState extends State<ProductEntryPage> {
                   var product = snapshot.data![index];
                   return InkWell(
                     onTap: () {
-                      // Navigate to the product details page
+                      // Navigasi ke laman detail product
                       Navigator.push(
                         context,
                         MaterialPageRoute(

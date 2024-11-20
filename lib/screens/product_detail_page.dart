@@ -14,7 +14,7 @@ class ProductDetailPage extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context); // Go back to the previous page
+            Navigator.pop(context); // Kembali ke laman produk
           },
         ),
       ),

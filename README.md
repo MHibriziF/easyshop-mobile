@@ -428,11 +428,47 @@ Text("Price: Rp${snapshot.data![index].fields.price}")
 
 ### Membuat halaman detail untuk setiap item yang terdapat pada halaman daftar Item.
 
-### Halaman ini dapat diakses dengan menekan salah satu item pada halaman daftar Item.
+Membuat file bernama `product_detail_page.dart` pada direktori `lib/screens`.
 
-### Tampilkan seluruh atribut pada model item kamu pada halaman ini.
+#### Halaman ini dapat diakses dengan menekan salah satu item pada halaman daftar Item.
 
-### Tambahkan tombol untuk kembali ke halaman daftar item.
+Modifikasi `list_productentry.dart` agar tiap item dapat ditekan dengan menggunakan widget `inkwell`
+
+#### Tampilkan seluruh atribut pada model item kamu pada halaman ini.
+
+Menambahkan kode berikut pada laman `product_detail_page.dart` sebagai children dari widget
+
+```dart
+...
+Text(
+  product.fields.name,
+  style: const TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+  ),
+),
+const SizedBox(height: 16),
+Text('Description: ${product.fields.description}'),
+const SizedBox(height: 8),
+Text('Stock: ${product.fields.stock}'),
+const SizedBox(height: 8),
+Text('Price: Rp${product.fields.price}'),
+const SizedBox(height: 8),
+...
+```
+
+#### Tambahkan tombol untuk kembali ke halaman daftar item.
+
+Pada attribut `leading` widget `Scaffold` di file `product_detail_page.dart`, menambahkan kode berikut
+
+```dart
+leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // Kembali ke laman produk
+          },
+        ),
+```
 
 ### Melakukan filter pada halaman daftar item dengan hanya menampilkan item yang terasosiasi dengan pengguna yang login.
 
