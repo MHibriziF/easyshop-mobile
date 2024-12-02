@@ -14,7 +14,7 @@ class ProductEntryPage extends StatefulWidget {
 
 class _ProductEntryPageState extends State<ProductEntryPage> {
   Future<List<ProductEntry>> fetchProduct(CookieRequest request) async {
-    final response = await request.get('http://127.0.0.1:8000/json/');
+    final response = await request.get('https://muhammad-hibrizi-easyshop.pbp.cs.ui.ac.id/json/');
     // Melakukan decode response menjadi bentuk json
     var data = response;
     // Melakukan konversi data json menjadi object ProductEntry
